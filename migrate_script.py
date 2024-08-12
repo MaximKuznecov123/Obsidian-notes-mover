@@ -1,32 +1,37 @@
 """README
-1) place all notes for import in one folder and root note too(it will be your old_vault)
+1) place all notes for import in one folder and root note too(it's your old_directory)
 2) change key parameters
+    (IMPORTANT: if you are on Linux/macOS you should use '/' symbol instead of '\\')
 3) enjoy
 """
-
 
 """
 It works for me but maybe you'll have following problems:
 
 1) Infinite loop if file links to self or backlinked file
 2) Quotes issues
-3) All logs are red
+3) Strange logs
 
 I will refine this code as I can and update message on forum
-"""
+# """
 import re
 import os
 
-attachments_extensions = ('.jpg', '.jpeg', '.jpe', '.jif', '.png', '.gif', '.svg', '.svgz', '.pdf', '.raw', '.arw',)
+attachments_extensions = list(map(lambda x: f'.{x}',
+                                  ('avif', 'bmp', 'gif', 'jpeg', 'jpg', 'png', 'svg', 'webp',
+                                   'flac', 'm4a', 'mp3', 'ogg', 'wav', 'webm', '3gp',
+                                   'mkv', 'mov', 'mp4', 'ogv',
+                                   'pdf')))
 
-# key parameters
-# DO NOT REPLACE DOUBLE BACKSLASHES ON THE END
-old_vault = 'path\\to\\your\\OLD_VAULT\\'
-new_vault = 'path\\to\\your\\NEW_VAULT\\'
-
-attachments_old_directory = 'path\\to\\your\\ATTACHMENTS_OLD_DIR\\'
-attachments_new_directory = 'path\\to\\your\\ATTACHMENTS_NEW_DIR\\'
-root_file = 'YOUR_ROOT_NOTE.md'
+# key parameters. It's windows examples so if you have Linux/macOS you should write something like:
+# your/path/there/
+# yeah, slashes on the end necessary
+old_directory = 'your\\path\\there\\'
+new_directory = 'your\\path\\there\\'
+attachments_old_directory = 'your\\path\\there\\'
+attachments_new_directory = 'your\\path\\there\\'
+# ...but root_file assign just with file name with extension
+root_file = 'Физика.md'
 
 
 def my_cut(str_: str) -> str:
@@ -57,7 +62,7 @@ def fun(file_relative: str, place: str, destination: str, attachments_dir: str, 
         for each in attachments:
             print(each)
             try:
-                os.replace(attachments_dir + each, attachments_dest + each)
+                # os.replace(attachments_dir + each, attachments_dest + each)
                 print(f'{each} MOVED!')
             except FileNotFoundError:
                 print(f'\033[91m{each} probably already replaced so we do nothing ¯\\_(ツ)_/¯\033[0m')
@@ -66,5 +71,5 @@ def fun(file_relative: str, place: str, destination: str, attachments_dir: str, 
     print(f'{file_relative} MOVED!')
 
 
-fun(root_file, old_vault, new_vault, attachments_old_directory, attachments_new_directory)
+fun(root_file, old_directory, new_directory, attachments_old_directory, attachments_new_directory)
 # sorry for bad english
