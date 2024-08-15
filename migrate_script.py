@@ -62,7 +62,7 @@ def fun(file_relative: str, place: str, destination: str, attachments_dir: str, 
         for each in attachments:
             print(each)
             try:
-                # os.replace(attachments_dir + each, attachments_dest + each)
+                os.replace(attachments_dir + each, attachments_dest + each)
                 print(f'{each} MOVED!')
             except FileNotFoundError:
                 print(f'\033[91m{each} probably already replaced so we do nothing ¯\\_(ツ)_/¯\033[0m')
