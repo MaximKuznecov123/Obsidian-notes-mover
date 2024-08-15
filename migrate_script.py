@@ -23,7 +23,7 @@ attachments_extensions = list(map(lambda x: f'.{x}',
                                    'mkv', 'mov', 'mp4', 'ogv',
                                    'pdf')))
 
-# key parameters. It's windows examples so if you have Linux/macOS you should write something like:
+# key parameters. There are windows examples so if you on Linux/macOS you should write something like:
 # your/path/there/
 # yeah, slashes on the end necessary
 old_directory = 'your\\path\\there\\'
@@ -31,7 +31,7 @@ new_directory = 'your\\path\\there\\'
 attachments_old_directory = 'your\\path\\there\\'
 attachments_new_directory = 'your\\path\\there\\'
 # ...but root_file assign just with file name with extension
-root_file = 'Физика.md'
+root_file = 'YOUR_ROOT_FILE.md'
 
 
 def my_cut(str_: str) -> str:
